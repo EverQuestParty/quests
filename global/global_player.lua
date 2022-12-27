@@ -1,10 +1,10 @@
 ---@type NPC
 
 ---@type { [string]:string }
-players = {}
+Players = {}
 
-local outOpcode = 0x72d8
-local inOpcode = 0x72d8
+local outOpcode = 0x6969
+local inOpcode = 0x6969
 
 ---@param e PlayerEvententerzone
 function event_enter_zone(e)
@@ -24,15 +24,16 @@ end
 
 ---@param e PlayerEventtimer
 function event_timer(e)
-    if players[e.timer] == nil then
+    if Players[e.timer] == nil then
         --TODO: disconnect
     end
-    players[e.self:GetName()] = nil
+    Players[e.self:GetName()] = nil
 end
 
 ---@param e PlayerEventplayerpacket
 function event_player_packet(e)
     if e.packet.GetRawOpcode() == inOpcode then
-        players[e.self:GetName()] = 1
+        e.self:Say("Got packet from "..e.self:GetName())
+        Players[e.self:GetName()] = "1"
     end
 end
