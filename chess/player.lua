@@ -14,11 +14,10 @@ doorCoords = {
     "h8", "g8", "f8", "e8", "d8", "c8", "b8", "a8",
 }
 
-
 ---@param e PlayerEventclickdoor
 function event_click_door(e)
     e.self:Say("click door id " .. e.door:GetDoorID() .. " at " .. e.door:GetX() .. ", " .. e.door:GetY() .. ", coord " .. doorCoords[e.door:GetDoorID()])
-
+   
     local rest_lib = require("rest");
     local result, err = rest_lib.request("GET", "https://jsonplaceholder.typicode.com/todos/1") --"http://localhost:8080?action=move&move=" .. doorCoords[e.door:GetDoorID()]);
     if err or result == nil then
@@ -28,7 +27,8 @@ function event_click_door(e)
 
     require ("lib/utils")
     var_dump(result)
-   e.self:Message(0, "dump: " .. result.title)
+    e.self:Message(0, "dump: " .. result.title)
+
 end
 
 
