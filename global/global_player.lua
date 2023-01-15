@@ -20,15 +20,13 @@ function event_timer(e)
     if Players[e.timer] == nil then
         e.self:Say("todo: disconnect")
         eq.stop_timer(e.timer)
+        return
     end
     Players[e.self:CharacterID()] = nil
 end
 
 ---@param e PlayerEventunhandledopcode
 function event_unhandled_opcode(e)
-    if e.self:GetName() = "123" then
-        e.self:Say("Test")
-    end
     e.self:Say(string.format("got packet 0x%x", e.packet:GetOpcode()))
     if e.packet:GetOpcode() == inOpcode then
         e.self:Say("Got packet from "..e.self:CharacterID())
