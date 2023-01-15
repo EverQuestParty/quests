@@ -15,19 +15,8 @@ local function new()
 	}, proxies_mt)
 end
 
+
 function proxies_methods:update(getenv)
-	if getenv == nil then
-		getenv = os.getenv
-	end
-	-- prefers lower case over upper case; except for http_proxy where no upper case
-	if getenv "GATEWAY_INTERFACE" then -- Mitigate httpoxy. see https://httpoxy.org/
-		self.http_proxy = getenv "CGI_HTTP_PROXY"
-	else
-		self.http_proxy = getenv "http_proxy"
-	end
-	self.https_proxy = getenv "https_proxy" or getenv "HTTPS_PROXY";
-	self.all_proxy = getenv "all_proxy" or getenv "ALL_PROXY";
-	self.no_proxy = getenv "no_proxy" or getenv "NO_PROXY";
 	return self
 end
 
